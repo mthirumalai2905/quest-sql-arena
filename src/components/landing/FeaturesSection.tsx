@@ -63,8 +63,7 @@ const FeaturesSection = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Everything you need to{" "}
-            <span className="text-gradient">master SQL</span>
+            Everything you need to master SQL
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             A complete learning platform designed to take you from beginner to expert
@@ -73,7 +72,7 @@ const FeaturesSection = () => {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -83,12 +82,12 @@ const FeaturesSection = () => {
             <motion.div
               key={feature.title}
               variants={item}
-              className="surface-card p-6 group hover:border-primary/30 transition-colors duration-300"
+              className="surface-card p-6 group hover:border-muted-foreground/30 transition-colors duration-300"
             >
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <feature.icon className="w-5 h-5 text-primary" />
+              <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center mb-4 group-hover:bg-muted-foreground/10 transition-colors">
+                <feature.icon className="w-5 h-5 text-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+              <h3 className="text-base font-semibold mb-2">{feature.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 {feature.description}
               </p>
