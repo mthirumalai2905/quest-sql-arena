@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Trophy, Flame, Zap } from "lucide-react";
+import { Flame, Zap } from "lucide-react";
 import AppLayout from "@/components/layout/AppLayout";
 import { useState } from "react";
 
@@ -32,17 +32,12 @@ const Leaderboard = () => {
   return (
     <AppLayout>
       <div className="p-6 md:p-10 max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
-        >
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
           <h1 className="text-3xl font-bold mb-1">Leaderboard</h1>
           <p className="text-muted-foreground">See how you stack up against other learners.</p>
         </motion.div>
 
-        {/* Tabs */}
-        <div className="flex gap-1 mb-6 p-1 bg-secondary rounded-lg w-fit">
+        <div className="flex gap-1 mb-6 p-1 bg-accent rounded-lg w-fit">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -58,13 +53,7 @@ const Leaderboard = () => {
           ))}
         </div>
 
-        {/* Table */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
-          className="surface-card overflow-hidden"
-        >
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="surface-card overflow-hidden">
           <table className="w-full">
             <thead>
               <tr className="border-b border-border text-xs text-muted-foreground uppercase tracking-wider">
@@ -72,14 +61,10 @@ const Leaderboard = () => {
                 <th className="text-left p-4">Player</th>
                 <th className="text-left p-4">Level</th>
                 <th className="text-right p-4">
-                  <span className="flex items-center gap-1 justify-end">
-                    <Flame className="w-3 h-3" /> Streak
-                  </span>
+                  <span className="flex items-center gap-1 justify-end"><Flame className="w-3 h-3" /> Streak</span>
                 </th>
                 <th className="text-right p-4">
-                  <span className="flex items-center gap-1 justify-end">
-                    <Zap className="w-3 h-3" /> XP
-                  </span>
+                  <span className="flex items-center gap-1 justify-end"><Zap className="w-3 h-3" /> XP</span>
                 </th>
               </tr>
             </thead>
@@ -91,24 +76,18 @@ const Leaderboard = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.03 }}
                   className={`border-b border-border/50 transition-colors ${
-                    (player as any).isCurrentUser
-                      ? "bg-primary/5 border-primary/20"
-                      : "hover:bg-secondary/50"
+                    (player as any).isCurrentUser ? "bg-foreground/[0.03]" : "hover:bg-accent/50"
                   }`}
                 >
-                  <td className="p-4 font-mono text-sm font-medium">
-                    {rankBadge(player.rank)}
-                  </td>
+                  <td className="p-4 font-mono text-sm font-medium">{rankBadge(player.rank)}</td>
                   <td className="p-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-xs font-bold">
+                      <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-xs font-bold">
                         {player.name[0]}
                       </div>
-                      <span className={`text-sm font-medium ${(player as any).isCurrentUser ? "text-primary" : ""}`}>
-                        {player.name}
-                      </span>
+                      <span className="text-sm font-medium">{player.name}</span>
                       {(player as any).isCurrentUser && (
-                        <span className="text-[10px] uppercase tracking-wide text-primary font-medium px-1.5 py-0.5 rounded bg-primary/10">
+                        <span className="text-[10px] uppercase tracking-wide text-foreground font-medium px-1.5 py-0.5 rounded bg-foreground/10">
                           You
                         </span>
                       )}
@@ -116,9 +95,7 @@ const Leaderboard = () => {
                   </td>
                   <td className="p-4 text-sm text-muted-foreground">{player.level}</td>
                   <td className="p-4 text-right text-sm font-mono">{player.streak}d</td>
-                  <td className="p-4 text-right text-sm font-mono font-medium">
-                    {player.xp.toLocaleString()}
-                  </td>
+                  <td className="p-4 text-right text-sm font-mono font-medium">{player.xp.toLocaleString()}</td>
                 </motion.tr>
               ))}
             </tbody>

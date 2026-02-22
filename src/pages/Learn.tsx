@@ -91,9 +91,9 @@ const curriculum: Chapter[] = [
 ];
 
 const statusConfig = {
-  completed: { color: "border-success bg-success/10", dot: "bg-success" },
-  available: { color: "border-primary bg-primary/10", dot: "bg-primary" },
-  locked: { color: "border-muted-foreground/20 bg-muted/30", dot: "bg-muted-foreground/30" },
+  completed: { color: "border-muted-foreground/20 bg-accent/50", dot: "bg-foreground" },
+  available: { color: "border-border bg-card", dot: "bg-foreground" },
+  locked: { color: "border-border/50 bg-card/30", dot: "bg-muted-foreground/30" },
 };
 
 const Learn = () => {
@@ -126,16 +126,15 @@ const Learn = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: ci * 0.05 }}
               >
-                {/* Chapter header */}
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
                     Level {chapter.level}
                   </span>
                   <h2 className="text-lg font-semibold">{chapter.title}</h2>
                   <div className="ml-auto flex items-center gap-2">
-                    <div className="w-24 h-1.5 bg-secondary rounded-full overflow-hidden">
+                    <div className="w-24 h-1.5 bg-accent rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-success rounded-full transition-all"
+                        className="h-full bg-foreground rounded-full transition-all"
                         style={{ width: `${progress}%` }}
                       />
                     </div>
@@ -145,7 +144,6 @@ const Learn = () => {
                   </div>
                 </div>
 
-                {/* Lessons */}
                 <div className="space-y-2">
                   {chapter.lessons.map((lesson) => {
                     const cfg = statusConfig[lesson.status];
@@ -155,11 +153,11 @@ const Learn = () => {
                       <div
                         className={`flex items-center gap-4 px-4 py-3 rounded-lg border transition-colors ${cfg.color} ${
                           isClickable
-                            ? "cursor-pointer hover:border-primary/40"
-                            : "opacity-50 cursor-not-allowed"
+                            ? "cursor-pointer hover:border-muted-foreground/30"
+                            : "opacity-40 cursor-not-allowed"
                         }`}
                       >
-                        <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${cfg.dot}`} />
+                        <div className={`w-2 h-2 rounded-full shrink-0 ${cfg.dot}`} />
                         <div className="flex-1 min-w-0">
                           <span className="text-sm font-medium">{lesson.title}</span>
                         </div>
@@ -172,23 +170,15 @@ const Learn = () => {
                             <Clock className="w-3 h-3" />
                             {lesson.minutes}m
                           </span>
-                          {lesson.status === "completed" && (
-                            <Check className="w-4 h-4 text-success" />
-                          )}
-                          {lesson.status === "locked" && (
-                            <Lock className="w-3.5 h-3.5" />
-                          )}
-                          {lesson.status === "available" && (
-                            <ChevronRight className="w-4 h-4" />
-                          )}
+                          {lesson.status === "completed" && <Check className="w-4 h-4 text-foreground" />}
+                          {lesson.status === "locked" && <Lock className="w-3.5 h-3.5" />}
+                          {lesson.status === "available" && <ChevronRight className="w-4 h-4" />}
                         </div>
                       </div>
                     );
 
                     return isClickable ? (
-                      <Link key={lesson.id} to={`/learn/${lesson.id}`}>
-                        {content}
-                      </Link>
+                      <Link key={lesson.id} to={`/learn/${lesson.id}`}>{content}</Link>
                     ) : (
                       <div key={lesson.id}>{content}</div>
                     );

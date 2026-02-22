@@ -27,13 +27,9 @@ const Profile = () => {
   return (
     <AppLayout>
       <div className="p-6 md:p-10 max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
-        >
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-2xl font-bold text-primary">
+            <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-2xl font-bold text-foreground">
               S
             </div>
             <div>
@@ -43,7 +39,6 @@ const Profile = () => {
           </div>
         </motion.div>
 
-        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -66,7 +61,6 @@ const Profile = () => {
           ))}
         </motion.div>
 
-        {/* XP Chart */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -80,41 +74,23 @@ const Profile = () => {
             {xpHistory.map((day, i) => (
               <div key={day.day} className="flex-1 flex flex-col items-center gap-2">
                 <motion.div
-                  className="w-full bg-primary/80 rounded-t"
+                  className="w-full bg-foreground/60 rounded-sm"
                   initial={{ height: 0 }}
                   animate={{ height: `${(day.xp / maxXp) * 100}%` }}
                   transition={{ duration: 0.5, delay: i * 0.05 }}
                 />
-                <span className="text-[10px] text-muted-foreground font-mono">
-                  {day.day}
-                </span>
+                <span className="text-[10px] text-muted-foreground font-mono">{day.day}</span>
               </div>
             ))}
           </div>
         </motion.div>
 
-        {/* Badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
-        >
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-4">
-            Badges
-          </h3>
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-4">Badges</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {badges.map((badge) => (
-              <div
-                key={badge.name}
-                className={`surface-card p-4 ${
-                  !badge.earned ? "opacity-40" : ""
-                }`}
-              >
-                <badge.icon
-                  className={`w-6 h-6 mb-2 ${
-                    badge.earned ? "text-primary" : "text-muted-foreground"
-                  }`}
-                />
+              <div key={badge.name} className={`surface-card p-4 ${!badge.earned ? "opacity-30" : ""}`}>
+                <badge.icon className="w-5 h-5 mb-2 text-foreground" />
                 <p className="text-sm font-medium mb-0.5">{badge.name}</p>
                 <p className="text-xs text-muted-foreground">{badge.description}</p>
               </div>

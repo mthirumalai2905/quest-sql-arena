@@ -13,10 +13,10 @@ import { Link } from "react-router-dom";
 import AppLayout from "@/components/layout/AppLayout";
 
 const stats = [
-  { label: "Total XP", value: "1,250", icon: Zap, color: "text-primary" },
-  { label: "Lessons Done", value: "12", icon: BookOpen, color: "text-success" },
-  { label: "Day Streak", value: "7", icon: Flame, color: "text-warning" },
-  { label: "Rank", value: "#42", icon: Trophy, color: "text-primary" },
+  { label: "Total XP", value: "1,250", icon: Zap },
+  { label: "Lessons Done", value: "12", icon: BookOpen },
+  { label: "Day Streak", value: "7", icon: Flame },
+  { label: "Rank", value: "#42", icon: Trophy },
 ];
 
 const recentActivity = [
@@ -40,7 +40,6 @@ const Dashboard = () => {
   return (
     <AppLayout>
       <div className="p-6 md:p-10 max-w-6xl">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -66,9 +65,9 @@ const Dashboard = () => {
               1,250 / 1,500 XP to Engineer
             </span>
           </div>
-          <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
+          <div className="w-full h-1.5 bg-accent rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-primary rounded-full"
+              className="h-full bg-foreground rounded-full"
               initial={{ width: 0 }}
               animate={{ width: "83%" }}
               transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
@@ -84,13 +83,9 @@ const Dashboard = () => {
           animate="show"
         >
           {stats.map((stat) => (
-            <motion.div
-              key={stat.label}
-              variants={item}
-              className="surface-card p-4"
-            >
+            <motion.div key={stat.label} variants={item} className="surface-card p-4">
               <div className="flex items-center gap-2 mb-2">
-                <stat.icon className={`w-4 h-4 ${stat.color}`} />
+                <stat.icon className="w-4 h-4 text-muted-foreground" />
                 <span className="text-xs text-muted-foreground uppercase tracking-wide">
                   {stat.label}
                 </span>
@@ -102,7 +97,6 @@ const Dashboard = () => {
 
         {/* Cards row */}
         <div className="grid md:grid-cols-2 gap-4 mb-8">
-          {/* Continue learning */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -126,7 +120,6 @@ const Dashboard = () => {
             </Button>
           </motion.div>
 
-          {/* Daily challenge */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,16 +127,13 @@ const Dashboard = () => {
             className="surface-card p-6 border-glow flex flex-col justify-between"
           >
             <div>
-              <div className="flex items-center gap-2 text-xs text-primary mb-3">
+              <div className="flex items-center gap-2 text-xs text-foreground mb-3">
                 <Target className="w-3.5 h-3.5" />
                 <span className="font-medium">Daily Challenge</span>
               </div>
-              <h3 className="text-lg font-semibold mb-1">
-                Window Functions Quiz
-              </h3>
+              <h3 className="text-lg font-semibold mb-1">Window Functions Quiz</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Test your knowledge on ROW_NUMBER, RANK, and PARTITION BY.
-                Earn bonus XP!
+                Test your knowledge on ROW_NUMBER, RANK, and PARTITION BY. Earn bonus XP!
               </p>
             </div>
             <Button variant="hero" size="sm" className="self-start" asChild>
@@ -164,17 +154,15 @@ const Dashboard = () => {
           <h3 className="text-sm font-semibold mb-4 uppercase tracking-wide text-muted-foreground">
             Recent Activity
           </h3>
-          <div className="space-y-3">
+          <div className="space-y-0">
             {recentActivity.map((act, i) => (
               <div
                 key={i}
-                className="flex items-center justify-between py-2 border-b border-border last:border-0"
+                className="flex items-center justify-between py-3 border-b border-border last:border-0"
               >
                 <span className="text-sm">{act.text}</span>
                 <div className="flex items-center gap-3 shrink-0">
-                  <span className="text-xs font-mono text-success">
-                    {act.xp}
-                  </span>
+                  <span className="text-xs font-mono text-foreground">{act.xp}</span>
                   <span className="text-xs text-muted-foreground flex items-center gap-1">
                     <Clock className="w-3 h-3" />
                     {act.time}
